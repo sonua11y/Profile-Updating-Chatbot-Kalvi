@@ -12,7 +12,16 @@ export default function Profile() {
   };
 
   useEffect(() => {
-    fetchProfile();
+    let active = true;
+    api.get("/profile").then((response) => {
+      if (active) {
+        setProfile(response.data);
+      }
+    });
+
+    return () => {
+      active = false;
+    };
   }, []);
 
   return (

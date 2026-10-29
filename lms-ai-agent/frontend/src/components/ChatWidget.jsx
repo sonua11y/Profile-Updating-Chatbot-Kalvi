@@ -24,7 +24,7 @@ export default function ChatWidget({ refresh }) {
       const botMsg = { sender: "bot", text: response.data.reply };
       setMessages((prev) => [...prev, botMsg]);
       refresh();
-    } catch (err) {
+    } catch {
       setMessages((prev) => [...prev, { sender: "bot", text: "Sorry, something went wrong." }]);
     }
     setInput("");

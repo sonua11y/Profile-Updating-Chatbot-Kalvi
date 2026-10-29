@@ -54,7 +54,7 @@ export default function ProfileForm({ profile, refresh }) {
       try {
         const res = await api.get("/profile/courses");
         setAvailableCourses(res.data);
-      } catch (err) {
+      } catch {
         setAvailableCourses([]);
       }
     }
@@ -72,12 +72,6 @@ export default function ProfileForm({ profile, refresh }) {
   const handleEducationChange = (e) => {
     setEducation({ ...education, [e.target.name]: e.target.value });
   };
-  const handleCourseChange = (idx, field, value) => {
-    const updated = [...courses];
-    updated[idx][field] = value;
-    setCourses(updated);
-  };
-
   // Save handlers
   // Restore backend save handler
   const handleSave = async (section) => {
@@ -101,7 +95,7 @@ export default function ProfileForm({ profile, refresh }) {
       if (typeof refresh === "function") {
         setTimeout(() => refresh(), 100);
       }
-    } catch (err) {
+    } catch {
       alert("Failed to update " + section + " details");
     }
     setLoading(false);
@@ -117,7 +111,6 @@ export default function ProfileForm({ profile, refresh }) {
       localStorage.setItem("student_id", newId);
       // Optionally, send to backend if needed
       // await api.put("/profile/personal", { ...personal, student_id: newId });
-      setPersonal((prev) => ({ ...prev, student_id: newId }));
     }
   }, [profile]);
 
