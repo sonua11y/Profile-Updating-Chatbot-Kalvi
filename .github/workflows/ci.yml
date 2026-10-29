@@ -3,7 +3,7 @@ name: Kalvi CI
 
 on:
   push:
-  branches: [master, feat/github-actions-cicd]
+  branches: [master, feat/github-actions-cicd, feat/backend-ci]
   pull_request:
     branches: [master]
 
